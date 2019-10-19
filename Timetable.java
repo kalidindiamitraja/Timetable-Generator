@@ -1,5 +1,11 @@
 import java.util.*; 
 public class Timetable{
-    String name;
-    String a[][] = new String[6][8];   
+    private String name;
+    String a[][] = new String[6][8];  
+    void setName(String s){
+        this.name=s;
+    } 
+    String getName(){
+        return this.name;
+    }
 }

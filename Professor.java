@@ -1,4 +1,7 @@
 import java.util.*; 
 public class Professor extends Timetable{
-    ArrayList<String> courses = new ArrayList<String>();
+    private ArrayList<String> courses = new ArrayList<String>();
+    void addCourses(String s){
+        this.courses.add(s);
+    }
 }

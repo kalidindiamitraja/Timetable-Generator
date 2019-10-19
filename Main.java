@@ -99,7 +99,7 @@ public static void main(String[] args) {
         public void actionPerformed(ActionEvent e){
             cb.addItem(cb2.getText());
             B.put(cb2.getText(),new Batch());
-            B.get(cb2.getText()).name = cb2.getText();
+            B.get(cb2.getText()).setName(cb2.getText());
         }
     });
     cb5.addActionListener(new ActionListener(){
@@ -111,8 +111,8 @@ public static void main(String[] args) {
         public void actionPerformed(ActionEvent e){
             cb7.removeAllItems();
             cb7.addItem("Select");
-            for(int i=0;i<CO.get(cb4.getItemAt(cb4.getSelectedIndex()).toString()).profs.size();i++){
-                cb7.addItem(CO.get(cb4.getItemAt(cb4.getSelectedIndex()).toString()).profs.get(i));
+            for(int i=0;i<CO.get(cb4.getItemAt(cb4.getSelectedIndex()).toString()).getProfsSize();i++){
+                cb7.addItem(CO.get(cb4.getItemAt(cb4.getSelectedIndex()).toString()).getProfsItem(i));
             }
         }
     });
@@ -132,31 +132,28 @@ public static void main(String[] args) {
     cp1.setFont(new Font("TimesRoman",Font.BOLD,20));
     cp1.setBounds(50,100,200,50);
     JTextField cp2=new JTextField();
-    cp2.setBounds(300,100,200,50);
+    cp2.setBounds(250,100,200,50);
     JLabel cp3=new JLabel("Course");
     cp3.setFont(new Font("TimesRoman",Font.BOLD,20));
-    cp3.setBounds(50,250,200,50);
+    cp3.setBounds(50,275,200,50);
     JComboBox cp4=new JComboBox(course);
-    cp4.setBounds(300,250,200,50);
+    cp4.setBounds(250,275,200,50);
     JButton cp5=new JButton("Add");
-    ArrayList<String> ecourses = new ArrayList<String>();
     cp5.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-            CO.get(cp4.getItemAt(cp4.getSelectedIndex()).toString()).profs.add(cp2.getText());
-            ecourses.add(cp4.getItemAt(cp4.getSelectedIndex()).toString());
+            CO.get(cp4.getItemAt(cp4.getSelectedIndex()).toString()).addProfs(cp2.getText());
+            PR.get(cp2.getText()).addCourses(cp4.getItemAt(cp4.getSelectedIndex()).toString());
         }
     });
-    cp5.setBounds(600,250,200,50);
+    cp5.setBounds(550,275,200,50);
     JButton cp6=new JButton("Create");
-    cp6.setBounds(460,500,200,50);
+    cp6.setBounds(550,100,200,50);
     cp6.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
             pf.addItem(cp2.getText());
             cb7.addItem(cp2.getText());
             PR.put(cp2.getText(),new Professor());
-            PR.get(cp2.getText()).name = cp2.getText();
-            PR.get(cp2.getText()).courses = ecourses;
-            ecourses.clear();
+            PR.get(cp2.getText()).setName(cp2.getText());
         }
     });
     createProfessor.setLayout(null);
@@ -174,21 +171,21 @@ public static void main(String[] args) {
     cc1.setFont(new Font("TimesRoman",Font.BOLD,20));
     cc1.setBounds(50,100,200,50);
     JTextField cc2 = new JTextField();
-    cc2.setBounds(300,100,200,50);
+    cc2.setBounds(250,100,200,50);
     JLabel cc3 = new JLabel("Credits");
     cc3.setFont(new Font("TimesRoman",Font.BOLD,20));
-    cc3.setBounds(50,250,200,50);
+    cc3.setBounds(50,275,200,50);
     JComboBox cc4 = new JComboBox(credits);
-    cc4.setBounds(300,250,200,50);
+    cc4.setBounds(250,275,200,50);
     JButton cc5 = new JButton("Create");
-    cc5.setBounds(300,450,200,50);
+    cc5.setBounds(250,450,200,50);
     cc5.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
             cb4.addItem(cc2.getText());
             cp4.addItem(cc2.getText());
             CO.put(cc2.getText(),new Course());
-            CO.get(cc2.getText()).name = cc2.getText();
-            CO.get(cc2.getText()).credits = Integer.parseInt(cc4.getItemAt(cc4.getSelectedIndex()).toString());
+            CO.get(cc2.getText()).setName(cc2.getText());
+            CO.get(cc2.getText()).setCredits(Integer.parseInt(cc4.getItemAt(cc4.getSelectedIndex()).toString()));
         }
     });
     createCourse.setLayout(null);
